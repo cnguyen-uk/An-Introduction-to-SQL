@@ -37,7 +37,7 @@ Data stored in a relational database will be of a certain *data type*. Different
 - `DATE`: the date formatted as YYYY-MM-DD.
 - `REAL`: a decimal value.
 
-An SQL *statement* is text which is recognised as a valid command. Statements always end in a `;`. Statements consist of *clauses* or *commands* which are special pieces of text which perform specific tasks in SQL. By convention, clauses/commands are written in capital letters. In SQL, the number of lines used does not matter (unlike in other programming languages), so statements can be broken up over multiple lines for readability.
+An SQL *statement* is text which is recognised as a valid command. Statements always end in a `;`. Statements consist of *clauses* or *commands* which are special pieces of text that perform specific tasks in SQL. By convention, clauses/commands are written in capital letters. Unlike other programming languages, in SQL the number of lines used does not matter, so statements can be broken up over multiple lines for readability. It is also conventional to wrap strings in single quotes `' '` as opposed to double quotes `" "`, but either will work.
 
 ## Manipulation
 
