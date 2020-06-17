@@ -75,7 +75,7 @@ Commonly used constraints are:
 
 ### Table Alteration
 
-The `INSERT INTO` command is used add new rows to a table. Either of the following statements can be used - the first inserts columns in order, and the second inserts columns by name.
+The `INSERT INTO` command is used add new rows to a table. Either of the following statements can be used - the first inserts columns in order, and the second inserts columns by name:
 
 ```SQL
 INSERT INTO table_name
@@ -143,7 +143,7 @@ SELECT column1, column2
 FROM table_name;
 ```
 
-The `AS` command is used to alias (i.e. rename) columns or tables. The returned result set will reflect this alias. For example, in the following first statement, `column_name` will be returned as `new_name`.
+The `AS` command is used to alias (i.e. rename) columns or tables. The returned result set will reflect this alias. For example, in the following first statement, `column_name` will be returned as `new_name`:
 
 ```SQL
 SELECT column_name AS new_name
@@ -162,7 +162,7 @@ SELECT DISTINCT column_name
 FROM table_name;
 ```
 
-The `LIMIT` command is used to restrict the result set to a specified number of rows. For example, if we only wanted to see the first 10 rows of a table, then we could use the following statement.
+The `LIMIT` command is used to restrict the result set to a specified number of rows. For example, if we only wanted to see the first 10 rows of a table, then we could use the following statement:
 
 ```SQL
 SELECT *
@@ -244,7 +244,7 @@ FROM table_name;
 
 ### Column References
 
-Instead of using explicit column names, we can instead reference selected columns by the number in which they appear in the `SELECT` statement. This is often used with the `ORDER BY` and `GROUP BY` (seen in more detail later) commands. For example, we can use the following statement to group books by the year published, ordered by price.
+Instead of using explicit column names, we can instead reference selected columns by the number in which they appear in the `SELECT` statement. This is often used with the `ORDER BY` and `GROUP BY` (seen in more detail later) commands. For example, we can use the following statement to group books by the year published, ordered by price:
 
 ```SQL
 SELECT day, week, month, year, book, price, author
@@ -290,7 +290,7 @@ FROM table_name;
 ```
 
 
-One of the most useful aggregate functions is the `COUNT()` function. This function returns the total number of rows which match the specified criteria. For example, the following statement can be used to find the total number of books published after the year 2000.
+One of the most useful aggregate functions is the `COUNT()` function. This function returns the total number of rows which match the specified criteria. For example, the following statement can be used to find the total number of books published after the year 2000:
 
 ```SQL
 SELECT COUNT(*)
@@ -302,7 +302,7 @@ Note that that the `COUNT()` function can also use column names as arguments, bu
 
 ### Grouping
 
-It is common to want to group results by columns in combination with aggregate function usage. In particular, if we want to select more columns for our result set, then we must use grouping. The `GROUP BY` command will group rows in a result set by identical values in one or more columns. The `GROUP BY` command can come after `FROM` or `WHERE`, but must come before `ORDER BY` or `LIMIT`. For example, if we wanted to produce a count of all books published per year, then we could use the following statement.
+It is common to want to group results by columns in combination with aggregate function usage. In particular, if we want to select more columns for our result set, then we must use grouping. The `GROUP BY` command will group rows in a result set by identical values in one or more columns. The `GROUP BY` command can come after `FROM` or `WHERE`, but must come before `ORDER BY` or `LIMIT`. For example, if we wanted to produce a count of all books published per year, then we could use the following statement:
 
 ```SQL
 SELECT year, COUNT(*)
@@ -310,7 +310,7 @@ FROM book_data
 GROUP BY year;
 ```
 
-Furthermore, we can further filter our grouped result set. since `GROUP BY` cannot be followed by `WHERE`, we must instead use the `HAVING` command, often used with aggregate functions. Continuing from the above example, if we were only interested in years which published a significant number of books, then we could use the following statement.
+Furthermore, we can further filter our grouped result set. since `GROUP BY` cannot be followed by `WHERE`, we must instead use the `HAVING` command, often used with aggregate functions. Continuing from the above example, if we were only interested in years which published a significant number of books, then we could use the following statement:
 
 ```SQL
 SELECT year, COUNT(*)
@@ -321,7 +321,7 @@ HAVING COUNT(*) > 100;
 
 ### Other Functions
 
-The `ROUND()` function will round a number to a specified number of places. It takes two arguments: a number, and a number of decimal places. It can also be combined with other aggregate functions. For example, if we wanted the average price of books for each year, rounded to two decimal places, then we could use the following statement.
+The `ROUND()` function will round a number to a specified number of places. It takes two arguments: a number, and a number of decimal places. It can also be combined with other aggregate functions. For example, if we wanted the average price of books for each year, rounded to two decimal places, then we could use the following statement:
 
 ```SQL
 SELECT year, ROUND(AVG(price), 2)
@@ -329,7 +329,7 @@ FROM book_data
 GROUP BY year;
 ```
 
-The `LEN()` function is used to return the length of a text field. For example, if we wanted to know the average length of book names for each year, then we could use the following statement.
+The `LEN()` function is used to return the length of a text field. For example, if we wanted to know the average length of book names for each year, then we could use the following statement:
 
 ```SQL
 SELECT year, AVG(LEN(name))
@@ -360,7 +360,7 @@ temporary_table2 AS (
 
 We now look at some common ways of working with multiple tables via joins, but it should be noted that many more ways of joining tables exist.
 
-The `INNER JOIN` command performs an inner join. This join returns a result set based on column values common to both tables, where conditions are specified using the `ON` command. Note that we can also use the `JOIN` command instead, since an inner join is the default join. The general statement is as follows.
+The `INNER JOIN` command performs an inner join. This join returns a result set based on column values common to both tables, where conditions are specified using the `ON` command. Note that we can also use the `JOIN` command instead, since an inner join is the default join. The general statement is as follows:
 
 ```SQL
 SELECT *
@@ -369,7 +369,7 @@ JOIN table2
   ON table1.some_column1 = table2.some_column2;
 ```
 
-For a more specific example, suppose we have a table of books, with author IDs, and a table of authors, also with IDs attached. Then we can create a useful result set matching books with their authors by using the following statement.
+For a more specific example, suppose we have a table of books, with author IDs, and a table of authors, also with IDs attached. Then we can create a useful result set matching books with their authors by using the following statement:
 
 ```SQL
 SELECT *
@@ -397,7 +397,7 @@ SELECT some_column2
 FROM table2;
 ```
 
-The `CROSS JOIN` command performs a cross join. This join returns a result set by combining each row from one table with each row from another table. For example, if we wanted all possible combinations of shirts and ties, then we could use the following statement.
+The `CROSS JOIN` command performs a cross join. This join returns a result set by combining each row from one table with each row from another table. For example, if we wanted all possible combinations of shirts and ties, then we could use the following statement:
 
 ```SQL
 SELECT shirts.shirt_colour, pants.pants_colour
