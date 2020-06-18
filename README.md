@@ -116,7 +116,7 @@ DELETE FROM table_name
 WHERE some_column = some_value;
 ```
 
-The `ALTER TABLE` command is used to modify existing columns of a table. For example, it may be used with the `ADD` command to add a new column to the table.
+The `ALTER TABLE` command is used to modify existing columns of a table. For example, it may be used with the `ADD` command to add a new column to the table. See [here](https://dev.mysql.com/doc/refman/8.0/en/alter-table.html) for a full list of command options.
 
 ```SQL
 ALTER TABLE table_name
@@ -149,14 +149,16 @@ SELECT column1, column2
 FROM table_name;
 ```
 
-The `AS` command is used to alias (i.e. rename) columns or tables. The returned result set will reflect this alias. For example, in the following first statement, `column_name` will be returned as `new_name`:
+The `AS` command is used to alias (i.e. rename) columns or tables. The returned result set will reflect this alias.
 
 ```SQL
+/* Returns the column_name column in the resulting table as new_name. */
 SELECT column_name AS new_name
 FROM table_name;
 ```
 
 ```SQL
+/* Returns the resulting table as new_name. */
 SELECT column_name
 FROM table_name AS new_name;
 ```
@@ -168,9 +170,10 @@ SELECT DISTINCT column_name
 FROM table_name;
 ```
 
-The `LIMIT` command is used to restrict the result set to a specified number of rows. For example, if we only wanted to see the first 10 rows of a table, then we could use the following statement:
+The `LIMIT` command is used to restrict the result set to a specified number of rows.
 
 ```SQL
+/* Limits the result set to the first 10 rows. */
 SELECT *
 FROM table_name
 LIMIT 10;
@@ -206,29 +209,33 @@ FROM table_name
 WHERE (column1 = 4 OR column5 < 8) AND column9 >= 2;
 ```
 
-The `LIKE` operator is used in a `WHERE` command to match a specified pattern. The `%` or `_` wildcard characters can be used to create a pattern to match. The `%` character is used to match zero or more unspecified characters, and the `_` character is used to match any single unspecified character. The following examples will match names starting with "Ad", names ending with "m", and names which match a more specific pattern, respectively.
+The `LIKE` operator is used in a `WHERE` command to match a specified pattern. The `%` or `_` wildcard characters can be used to create a pattern to match. The `%` character is used to match zero or more unspecified characters, and the `_` character is used to match any single unspecified character.
 
 ```SQL
+/* Returns names starting with "Ad". */
 SELECT name
 FROM customer_list
 WHERE name LIKE 'Ad%';
 ```
 
 ```SQL
+/* Returns names ending with "m". */
 SELECT name
 FROM customer_list
 WHERE name LIKE '%m';
 ```
 
 ```SQL
+/* Returns names which have "C", "r", "l" as their first, third and fifth characters, respectively. */
 SELECT name
 FROM customer_list
 WHERE name LIKE 'C_r_l';
 ```
 
-The `BETWEEN` operator is used to filter a range of values. The values can be text, numbers, or date data. Filtering will always be inclusive. For example, if we wanted to return the years 1980, 1981, 1982, 1983, 1984 from a list of books, then we could use the following statement.
+The `BETWEEN` operator is used to filter a range of values. The values can be text, numbers, or date data. Filtering will always be inclusive.
 
 ```SQL
+/* Returns the years 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990. */
 SELECT *
 FROM book_data
 WHERE year BETWEEN 1980 AND 1990;
@@ -250,9 +257,10 @@ FROM table_name;
 
 ### Column References
 
-Instead of using explicit column names, we can instead reference selected columns by the number in which they appear in the `SELECT` statement. This is often used with the `ORDER BY` and `GROUP BY` (seen in more detail later) commands. For example, we can use the following statement to group books by the year published, ordered by price:
+Instead of using explicit column names, we can instead reference selected columns by the number in which they appear in the `SELECT` statement. This is often used with the `ORDER BY` and `GROUP BY` (seen in more detail later) commands.
 
 ```SQL
+/* Groups books by the year published, ordered by price. */
 SELECT day, week, month, year, book, price, author
 FROM book_data
 GROUP BY 4
@@ -296,9 +304,10 @@ FROM table_name;
 ```
 
 
-One of the most useful aggregate functions is the `COUNT()` function. This function returns the total number of rows which match the specified criteria. For example, the following statement can be used to find the total number of books published after the year 2000:
+One of the most useful aggregate functions is the `COUNT()` function. This function returns the total number of rows which match the specified criteria.
 
 ```SQL
+/* Produces a count of all books published after the year 2000. */
 SELECT COUNT(*)
 FROM book_data
 WHERE year > 2000;
@@ -308,17 +317,19 @@ Note that that the `COUNT()` function can also use column names as arguments, bu
 
 ### Grouping
 
-It is common to want to group results by columns in combination with aggregate function usage. In particular, if we want to select more columns for our result set, then we must use grouping. The `GROUP BY` command will group rows in a result set by identical values in one or more columns. The `GROUP BY` command can come after `FROM` or `WHERE`, but must come before `ORDER BY` or `LIMIT`. For example, if we wanted to produce a count of all books published per year, then we could use the following statement:
+It is common to want to group results by columns in combination with aggregate function usage. In particular, if we want to select more columns for our result set, then we must use grouping. The `GROUP BY` command will group rows in a result set by identical values in one or more columns. The `GROUP BY` command can come after `FROM` or `WHERE`, but must come before `ORDER BY` or `LIMIT`.
 
 ```SQL
+/* Produces a count of all books published for each year. */
 SELECT year, COUNT(*)
 FROM book_data
 GROUP BY year;
 ```
 
-Furthermore, we can further filter our grouped result set. since `GROUP BY` cannot be followed by `WHERE`, we must instead use the `HAVING` command, often used with aggregate functions. Continuing from the above example, if we were only interested in years which published a significant number of books, then we could use the following statement:
+Furthermore, we can further filter our grouped result set. since `GROUP BY` cannot be followed by `WHERE`, we must instead use the `HAVING` command, often used with aggregate functions.
 
 ```SQL
+/* Restricts the previous example to years which published a significant number of books. */
 SELECT year, COUNT(*)
 FROM book_data
 GROUP BY year
@@ -327,17 +338,19 @@ HAVING COUNT(*) > 100;
 
 ### Other Functions
 
-The `ROUND()` function will round a number to a specified number of places. It takes two arguments: a number, and a number of decimal places. It can also be combined with other aggregate functions. For example, if we wanted the average price of books for each year, rounded to two decimal places, then we could use the following statement:
+The `ROUND()` function will round a number to a specified number of places. It takes two arguments: a number, and a number of decimal places. It can also be combined with other aggregate functions.
 
 ```SQL
+/* Returns the average price of books for each year, rounded to two decimal places. */
 SELECT year, ROUND(AVG(price), 2)
 FROM book_data
 GROUP BY year;
 ```
 
-The `LEN()` function is used to return the length of a text field. For example, if we wanted to know the average length of book names for each year, then we could use the following statement:
+The `LEN()` function is used to return the length of a text field.
 
 ```SQL
+/* Returns the average length of book names for each year */
 SELECT year, AVG(LEN(name))
 FROM book_data
 GROUP BY year;
@@ -403,9 +416,10 @@ SELECT some_column2
 FROM table2;
 ```
 
-The `CROSS JOIN` command performs a cross join. This join returns a result set by combining each row from one table with each row from another table. For example, if we wanted all possible combinations of shirts and ties, then we could use the following statement:
+The `CROSS JOIN` command performs a cross join. This join returns a result set by combining each row from one table with each row from another table.
 
 ```SQL
+/* Returns all possible combinations of shirts and ties. */
 SELECT shirts.shirt_colour, pants.pants_colour
 FROM shirts
 CROSS JOIN pants;
