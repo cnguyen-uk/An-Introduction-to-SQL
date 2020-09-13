@@ -350,7 +350,7 @@ GROUP BY year;
 The `LEN()` function is used to return the length of a text field.
 
 ```SQL
-/* Returns the average length of book names for each year */
+/* Returns the average length of book names for each year. */
 SELECT year, AVG(LEN(name))
 FROM book_data
 GROUP BY year;
