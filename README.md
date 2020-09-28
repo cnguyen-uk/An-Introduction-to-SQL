@@ -55,9 +55,9 @@ The `CREATE TABLE` command is used to create completely new tables.
 
 ```SQL
 CREATE TABLE table_name (
-  column1 datatype1,
-  column2 datatype2,
-  column3 datatype3
+    column1 datatype1,
+    column2 datatype2,
+    column3 datatype3
 );
 ```
 
@@ -65,10 +65,10 @@ We may also add column constraints to our tables, i.e. rules which apply to the 
 
 ```SQL
 CREATE TABLE student (
-  id INTEGER PRIMARY KEY,
-  name TEXT UNIQUE,
-  grade INTEGER NOT NULL,
-  age INTEGER DEFAULT 10
+    id INTEGER PRIMARY KEY,
+    name TEXT UNIQUE,
+    grade INTEGER NOT NULL,
+    age INTEGER DEFAULT 10
 );
 ```
 
@@ -98,15 +98,15 @@ We can also insert multiple rows without using multiple `VALUES` commands.
 ```SQL
 INSERT INTO table_name
 VALUES
-  (value1, value2, value3),
-  (value4, value5, value6);
+    (value1, value2, value3),
+    (value4, value5, value6);
 ```
 
 ```SQL
 INSERT INTO table_name (column1, column2, column3)
 VALUES
-  (value1, value2, value3),
-  (value4, value5, value6);
+    (value1, value2, value3),
+    (value4, value5, value6);
 ```
 
 The `DELETE` command is used to remove rows from a table.
@@ -185,8 +185,8 @@ The `ORDER BY` command is used to sort the result set of a query by one or more 
 SELECT *
 FROM table_name
 ORDER BY
-  some_column1 ASC,
-  some_column2 DESC;
+    some_column1 ASC,
+    some_column2 DESC;
 ```
 
 The `WHERE` command is used to filter rows that match a certain condition. We can also use `IS NULL` or `IS NOT NULL` in combination with this command.
@@ -247,11 +247,11 @@ In SQL the `CASE` command is used to handle IF-THEN logic, i.e. a way to create 
 
 ```SQL
 SELECT column1, column2,
-  CASE
-    WHEN condition1 THEN result1
-    WHEN condition2 THEN result2
-    ELSE result3
-  END AS new_column
+    CASE
+        WHEN condition1 THEN result1
+        WHEN condition2 THEN result2
+        ELSE result3
+    END AS new_column
 FROM table_name;
 ```
 
@@ -366,12 +366,12 @@ The `WITH` command can be used to store the result of a query in a temporary tab
 
 ```SQL
 WITH temporary_table1 AS (
-  SELECT column1, column2
-  FROM table_name1
+    SELECT column1, column2
+    FROM table_name1
 ),
 temporary_table2 AS (
-  SELECT column3
-  FROM table_name2
+    SELECT column3
+    FROM table_name2
 );
 ```
 
@@ -385,7 +385,7 @@ The `INNER JOIN` command performs an inner join. This join returns a result set 
 SELECT *
 FROM table1
 JOIN table2
-  ON table1.some_column1 = table2.some_column2;
+    ON table1.some_column1 = table2.some_column2;
 ```
 
 For a more specific example, suppose we have a table of books, with author IDs, and a table of authors, also with IDs attached. Then we can create a useful result set matching books with their authors by using the following statement:
@@ -394,7 +394,7 @@ For a more specific example, suppose we have a table of books, with author IDs, 
 SELECT *
 FROM books
 JOIN authors
-  ON books.author_id = authors.id;
+    ON books.author_id = authors.id;
 ```
 
 The `LEFT JOIN` command performs a left outer join. This join returns a result set based on column values common to the left table. If there is no match for a column value from the left table with a corresponding right table value, then the right table value will be set to `NULL` in the result set. Similarly, the `RIGHT JOIN` command performs a right outer join.
@@ -403,7 +403,7 @@ The `LEFT JOIN` command performs a left outer join. This join returns a result s
 SELECT *
 FROM table1
 LEFT JOIN table2
-  ON table1.some_column1 = table2.some_column2;
+    ON table1.some_column1 = table2.some_column2;
 ```
 
 The `UNION` command performs a full join. This join returns a result set by combining results from multiple `SELECT` statements, and filters duplicates. Note that both `SELECT` statements must select the same number of columns, and have the same respective data types.
