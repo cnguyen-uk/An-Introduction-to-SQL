@@ -97,7 +97,7 @@ SELECT people_name,
 
 #### Block Comments
 
-Block comments should be written in complete sentences, be indented with the code which it is commenting, and come before the code which it is commenting. Placing the comment after is merciless on a confused reader. Paragraphs are separated by a single line, and multi-sentence comments should have two spaces after a sentence-ending period (except after the final sentence).
+Block comments should be written in complete sentences, be indented with the code which it is commenting, and come *before* the code which it is commenting. Placing the comment after is merciless on a confused reader. Paragraphs are separated by a single line, and multi-sentence comments should have two spaces after a sentence-ending period (except after the final sentence).
 
 ```SQL
 /* This statement queries for information on people.  It does not filter results.
