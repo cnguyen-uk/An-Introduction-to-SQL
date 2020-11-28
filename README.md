@@ -9,7 +9,7 @@ To use SQL, we need to choose a relational database management system (RDBMS), o
 
 ## Table of Contents
 
-- [Coding Standards](#coding-standards)
+- [Code Standards](#code-standards)
   * [Indentation](#indentation)
   * [Comments](#comments)
     + [Inline Comments](#inline-comments)
@@ -33,9 +33,9 @@ To use SQL, we need to choose a relational database management system (RDBMS), o
   * [Temporary Tables](#temporary-tables)
   * [Joining](#joining)
 
-## Coding Standards
+## Code Standards
 
-All written code should follow a style guide to ensure that standards are kept consistent across any codebase and make code easier to read. Badly written code is difficult to scale, optimise, and debug. Such is the importance of high coding standards that this guide will discuss it as a separate section before any code is seen.
+All written code should follow a style guide to ensure that standards are kept consistent across any codebase and make code easier to read. Badly written code is difficult to scale, optimise, and debug. Such is the importance of high code standards that this guide will discuss it as a separate section before any code is seen.
 
 We follow the standards in [S. Holywell's SQL Style Guide](https://www.sqlstyle.guide/). In particular, this section will act as a reference for language-specific best practices for indentation, comments, quotes, and names, since these can vary across different programming languages.
 
