@@ -85,14 +85,14 @@ Inline comments should be used sparingly and not state the obvious. They should 
 
 ```SQL
 SELECT people_name,
-       people_age, people_weight -- Group characterstics together
+       people_age, people_weight  -- Group characterstics together
 ```
 
 As a comparison, the following should be avoided:
 
 ```SQL
 SELECT people_name,
-       people_age, people_weight -- Groups characterstics together
+       people_age, people_weight  -- Groups characterstics together
 ```
 
 #### Block Comments
